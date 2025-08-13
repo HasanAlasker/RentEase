@@ -62,7 +62,7 @@ const getStyles = (theme) =>
     navbar: {
       flexDirection: "row",
       justifyContent: "space-between",
-      paddingHorizontal: 22,
+      paddingHorizontal: 44,
       backgroundColor: theme.post,
       paddingTop: 10,
       paddingBottom: 13,

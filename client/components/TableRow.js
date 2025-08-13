@@ -47,7 +47,7 @@ const getStyles = (theme) =>
     },
     text: {
       color: theme.main_text,
-      fontSize: 20,
+      fontSize: 18,
       fontWeight: "bold",
     },
   });

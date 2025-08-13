@@ -13,11 +13,11 @@ function PostComp({ userName, contractStart, anualRent, numberOfPayments, }) {
   const [fullPost, setFullPost] = useState(false);
 
   return (
-    <TouchableOpacity
+    <View
       style={styles.container}
-      onPress={() => setFullPost((prev) => !prev)}
+      
     >
-      <View style={styles.top}>
+      <TouchableOpacity style={styles.top} onPress={() => setFullPost((prev) => !prev)}>
         <View style={styles.nameAndIcon}>
           <MaterialCommunityIcons
             name="account-outline"
@@ -35,17 +35,17 @@ function PostComp({ userName, contractStart, anualRent, numberOfPayments, }) {
           size={30}
           color={theme.blue}
         ></MaterialCommunityIcons>
-      </View>
+      </TouchableOpacity>
       {fullPost && (
         <View style={styles.table}>
           <TableRow icon={'file-document-outline'} size={20} label={'بداية العقد:'} value={contractStart} odd={true}></TableRow>
-          <TableRow icon={'currency-usd'} size={22} label={'قيمة الأجار:'} value={'4554'} even={true}></TableRow>
-          <TableRow icon={'content-copy'} size={18} label={'عدد الدفعات:'} value={'4'} odd={true}></TableRow>
-          <TableRow icon={'clock-outline'} size={20} label={'موعد الدفعات:'} value={'2/3/2343'} even={true}></TableRow>
-          <TableRow icon={'currency-usd'} size={22} label={'قيمة الدفعة:'} value={'6767'} odd={true}></TableRow>
+          <TableRow icon={'currency-usd'} size={22} label={'قيمة الأجار:'} value={anualRent} even={true}></TableRow>
+          <TableRow icon={'content-copy'} size={18} label={'عدد الدفعات:'} value={numberOfPayments} odd={true}></TableRow>
+          <TableRow icon={'clock-outline'} size={20} label={'موعد الدفعات:'} value={''} even={true}></TableRow>
+          <TableRow icon={'currency-usd'} size={22} label={'قيمة الدفعة:'} value={(anualRent/numberOfPayments)} odd={true}></TableRow>
         </View>
       )}
-    </TouchableOpacity>
+    </View>
   );
 }
 
@@ -59,6 +59,7 @@ const getStyles = (theme) =>
       borderRadius: 20,
       borderWidth: 2,
       borderColor: theme.blue,
+      marginVertical:15
     },
     top: {
       flexDirection: "row",

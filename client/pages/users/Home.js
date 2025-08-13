@@ -9,7 +9,9 @@ function Home(props) {
   return (
     <SafeScreen>
       <FullScreen>
-        <PostComp userName={'شركة المعكرونة'}></PostComp>
+        <PostComp userName={'إكليل'} anualRent={'7344'} contractStart={'1/1/2025'} numberOfPayments={'4'}></PostComp>
+        <PostComp userName={'عمر المجالي'} anualRent={'8160'} contractStart={'1/1/2025'} numberOfPayments={'12'}></PostComp>
+        
       </FullScreen>
       <Navbar></Navbar>
     </SafeScreen>
