@@ -1,14 +1,20 @@
-import React from 'react';
-import { View, StyleSheet } from 'react-native';
+
+import { View, StyleSheet } from "react-native";
+import SafeScreen from "../../components/SafeScreen";
+import FullScreen from "../../components/FullScreen";
+import Navbar from "../../components/Navbar";
 
 function Home(props) {
   return (
-    <View style={styles.container}></View>
+    <SafeScreen>
+      <FullScreen></FullScreen>
+      <Navbar></Navbar>
+    </SafeScreen>
   );
 }
 
 const styles = StyleSheet.create({
-  container:{},
-})
+  container: {},
+});
 
 export default Home;

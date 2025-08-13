@@ -1,9 +1,15 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
+import SafeScreen from "../../components/SafeScreen";
+import FullScreen from "../../components/FullScreen";
+import Navbar from "../../components/Navbar";
 
 function Post(props) {
   return (
-    <View style={styles.container}></View>
+    <SafeScreen>
+      <FullScreen></FullScreen>
+      <Navbar></Navbar>
+    </SafeScreen>
   );
 }
 

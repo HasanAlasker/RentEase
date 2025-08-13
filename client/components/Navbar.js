@@ -3,12 +3,14 @@ import { View, Text, TouchableOpacity } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import useThemedStyles from "../hooks/useThemedStyles";
+import { useTheme } from "../config/ThemeContext";
 
 function Navbar(props) {
   const navigation = useNavigation();
   const route = useRoute();
 
   const styles = useThemedStyles(getStyles);
+  const { isDarkMode, toggleTheme } = useTheme();
 
   return (
     <>
@@ -29,20 +31,6 @@ function Navbar(props) {
 
         <TouchableOpacity
           style={styles.navbarBtn}
-          onPress={() => navigation.navigate("Have")}
-        >
-          <Feather
-            name="clipboard"
-            size={30}
-            style={[styles.icon, route.name === "Have" && styles.active]}
-          />
-          <Text style={[styles.text, route.name === "Have" && styles.active]}>
-            Have
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.navbarBtn}
           onPress={() => navigation.navigate("Post")}
         >
           <Feather
@@ -57,31 +45,17 @@ function Navbar(props) {
 
         <TouchableOpacity
           style={styles.navbarBtn}
-          onPress={() => navigation.navigate("Book")}
+          onPress={toggleTheme}
         >
           <Feather
-            name="calendar"
-            size={30}
-            style={[styles.icon, route.name === "Book" && styles.active]}
-          />
-          <Text style={[styles.text, route.name === "Book" && styles.active]}>
-            Book
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.navbarBtn}
-          onPress={() => navigation.navigate("Profile")}
-        >
-          <Feather
-            name="user"
+            name={isDarkMode ? 'sun' : 'moon'}
             size={30}
             style={[styles.icon, route.name === "Profile" && styles.active]}
           />
           <Text
-            style={[styles.text, route.name === "Profile" && styles.active]}
+            style={[styles.text,]}
           >
-            Profile
+            {isDarkMode ? 'Light' : 'Dark'}
           </Text>
         </TouchableOpacity>
       </View>
@@ -104,7 +78,6 @@ const getStyles = (theme) =>
       height: 73,
       width: "100%",
       zIndex: 100,
-
     },
     navbarBtn: {
       display: "flex",
@@ -123,7 +96,7 @@ const getStyles = (theme) =>
       textAlign: "center",
     },
     active: {
-      color: theme.purple,
+      color: theme.blue,
     },
     bottom: {
       position: "absolute",
