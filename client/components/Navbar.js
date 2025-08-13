@@ -15,18 +15,13 @@ function Navbar(props) {
   return (
     <>
       <View style={styles.navbar}>
-        <TouchableOpacity
-          style={styles.navbarBtn}
-          onPress={() => navigation.navigate("Home")}
-        >
+        <TouchableOpacity style={styles.navbarBtn} onPress={toggleTheme}>
           <Feather
-            name="home"
+            name={isDarkMode ? "sun" : "moon"}
             size={30}
-            style={[styles.icon, route.name === "Home" && styles.active]}
+            style={[styles.icon, route.name === "Profile" && styles.active]}
           />
-          <Text style={[styles.text, route.name === "Home" && styles.active]}>
-            Home
-          </Text>
+          <Text style={[styles.text]}>{isDarkMode ? "Light" : "Dark"}</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -39,23 +34,21 @@ function Navbar(props) {
             style={[styles.icon, route.name === "Post" && styles.active]}
           />
           <Text style={[styles.text, route.name === "Post" && styles.active]}>
-            Post
+            Add
           </Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.navbarBtn}
-          onPress={toggleTheme}
+          onPress={() => navigation.navigate("Home")}
         >
           <Feather
-            name={isDarkMode ? 'sun' : 'moon'}
+            name="home"
             size={30}
-            style={[styles.icon, route.name === "Profile" && styles.active]}
+            style={[styles.icon, route.name === "Home" && styles.active]}
           />
-          <Text
-            style={[styles.text,]}
-          >
-            {isDarkMode ? 'Light' : 'Dark'}
+          <Text style={[styles.text, route.name === "Home" && styles.active]}>
+            Home
           </Text>
         </TouchableOpacity>
       </View>
