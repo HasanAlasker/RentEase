@@ -1,46 +1,87 @@
-# 🏢 RentEase - Simple Building Rental Manager
+# 🏢 RentEase
 
-**RentEase** is a small, offline-first mobile application built with React Native to help manage rental building information quickly — without digging into bulky books or contracts.  
-Perfect for single-user scenarios where **speed, simplicity, and offline access** are essential.
+> **Manage your building. Ditch the paperwork.**  
+> Your pocket-sized assistant for tracking renters, payments, and contracts — all offline.
 
----
-
-## ✨ Features
-- 📋 **Add renters** with:
-  - Name
-  - Start date of contract
-  - Yearly rent value
-  - Number of months in the payment cycle
-- 🗂 **Dashboard view**: See all renters at a glance.
-- 📅 **Auto-generated payment schedule** based on start date & months.
-- 💰 **Automatic monthly payment calculation**.
-- 🌓 **Light/Dark mode** support.
-- 🛠 **Edit/Delete** renter details easily.
-- 📱 **Offline storage** (no internet required).
+<p align="center">
+  <img src="https://img.shields.io/badge/Built%20With-React%20Native-61dafb?style=for-the-badge&logo=react&logoColor=white" />
+  <img src="https://img.shields.io/badge/Powered%20By-Expo-000020?style=for-the-badge&logo=expo&logoColor=white" />
+  <img src="https://img.shields.io/badge/License-Private-red?style=for-the-badge" />
+</p>
 
 ---
 
-## 📷 Screenshots
-*(Coming Soon)*
+## 📱 What is RentEase?
+
+**RentEase** is a minimal, offline-first app that helps a building owner keep all renter information in one place.  
+Forget flipping through **heavy books** or re-reading **long contracts** — with RentEase, all your important details are just a tap away.
 
 ---
 
-## 🚀 Tech Stack
-- **React Native**
-- **AsyncStorage** (or MMKV/SQLite for persistence)
-- **React Navigation** (for screen navigation)
-- **Styled Components / Custom Theming**
+## 🎯 Use Cases
+
+- See all renters at a glance, with quick access to contract details.
+- Auto-calculate **monthly payment amounts** from the yearly value.
+- Instantly view **payment schedules** based on the contract start date.
+- Quickly update or remove renter info without touching a spreadsheet.
 
 ---
 
-## 📦 Installation
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/rentease.git
+## ✨ Key Features
 
-# Install dependencies
-cd rentease
-npm install
+- 📝 **Add Renter Info**  
+  Name, start date of contract, yearly rent value, payment cycle.
 
-# Run the app (Expo)
-npm start
+- 📅 **Auto Payment Schedule**  
+  See all due dates calculated automatically.
+
+- 💰 **Monthly Payment Calculation**  
+  No manual math — RentEase does it for you.
+
+- 🌓 **Light & Dark Mode**  
+  Choose the theme that fits your eyes.
+
+- ✏ **Edit & Delete Renters**  
+  Manage data in seconds.
+
+- 📱 **Works 100% Offline**  
+  All data is stored locally on your device.
+
+---
+
+## 🛠 Tech Stack
+
+| Layer        | Tech Used                |
+|--------------|--------------------------|
+| UI/UX        | Figma                    |
+| Frontend     | React Native + Expo      |
+| Storage      | AsyncStorage / MMKV      |
+| Navigation   | React Navigation         |
+| Theming      | Custom Theme Context     |
+
+---
+
+## 📸 Screenshots
+
+> Coming soon — home screen, add screen, and expanded renter details.
+
+---
+
+## 🔒 Licensing & Usage
+
+> **RentEase is a private, closed-source project.**  
+> Redistribution, reuse, or copying of code and design elements is **strictly prohibited**.  
+> Created by **Hasan Alasker**.
+
+---
+
+## 👨‍💻 Author
+
+**Hasan Alasker**  
+Front-End Engineer | UI/UX Designer | Mobile Developer  
+🌐 [Portfolio Website](https://hasan-alasker.netlify.app)  
+📧 [hasanalasker.contact@gmail.com](mailto:hasanalasker.contact@gmail.com)
+
+---
+
+> *Managing your building has never been this easy.*
