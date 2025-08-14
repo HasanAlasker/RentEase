@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
+import { View, StyleSheet, Alert } from "react-native";
 import SafeScreen from "../../components/SafeScreen";
-import FullScreen from "../../components/FullScreen";
 import Navbar from "../../components/Navbar";
 import ErrorMessage from "../../components/ErrorMessage";
 import InputBox from "../../components/InputBox";
 import ScrollScreen from "../../components/ScrollScreen";
+import { usePosts } from "../../config/PostsContext";
 
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -84,9 +84,41 @@ const FormikInput = ({
 
 function Post(props) {
   const [hasBeenSubmitted, setHasBeenSubmitted] = useState(false);
+  const { addPost } = usePosts(); // Get the addPost function from context
 
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
     setHasBeenSubmitted(true);
+    
+    try {
+      // Create a new post object with a unique ID
+      const newPost = {
+        id: Date.now().toString(), // Simple ID generation
+        userName: values.name,
+        anualRent: values.rent.toString(),
+        contractStart: values.contractStart,
+        numberOfPayments: values.numberOfPayments.toString(),
+        createdAt: new Date().toISOString(),
+      };
+
+      // Add the post to context
+      addPost(newPost);
+
+      // Show success message
+      Alert.alert("نجح", "تم إضافة المستأجر بنجاح", [
+        {
+          text: "موافق",
+          onPress: () => {
+            // Reset form after successful submission
+            resetForm();
+            setHasBeenSubmitted(false);
+          },
+        },
+      ]);
+    } catch (error) {
+      Alert.alert("خطأ", "حدث خطأ أثناء إضافة المستأجر");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -184,9 +216,9 @@ function Post(props) {
 
 const styles = StyleSheet.create({
   container: {},
-  formContainer:{
+  formContainer: {
     
-  }
+  },
 });
 
 export default Post;

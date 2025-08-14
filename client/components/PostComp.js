@@ -4,6 +4,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  Alert
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useTheme } from "../config/ThemeContext";
@@ -11,12 +12,34 @@ import useThemedStyles from "../hooks/useThemedStyles";
 import AppText from "../config/AppText";
 import TableRow from "./TableRow";
 import EditDeleteBtn from "./EditDeleteBtn";
+import { usePosts } from "../config/PostsContext";
 
-function PostComp({ userName, contractStart, anualRent, numberOfPayments, numberOfCheques, dateOfCheques }) {
+function PostComp({
+  id, // Add id prop
+  userName,
+  contractStart,
+  anualRent,
+  numberOfPayments,
+  numberOfCheques,
+  dateOfCheques,
+}) {
   const styles = useThemedStyles(getStyles);
   const { theme } = useTheme();
 
   const [fullPost, setFullPost] = useState(false);
+
+  const { removePost } = usePosts();
+
+  const handleDelete = () => {
+    Alert.alert("حذف المستأجر", "هل أنت متأكد من حذف هذا المستأجر؟", [
+      { text: "إلغاء", style: "cancel" },
+      {
+        text: "حذف",
+        style: "destructive",
+        onPress: () => removePost(id), // Use id instead of postId
+      },
+    ]);
+  };
 
   return (
     <View style={styles.container}>
@@ -77,7 +100,7 @@ function PostComp({ userName, contractStart, anualRent, numberOfPayments, number
               icon={"currency-usd"}
               size={22}
               label={"قيمة الدفعة:"}
-              value={anualRent / numberOfPayments}
+              value={Math.round(anualRent / numberOfPayments)}
               odd={true}
             ></TableRow>
             <TableRow
@@ -97,7 +120,7 @@ function PostComp({ userName, contractStart, anualRent, numberOfPayments, number
           </View>
           <View style={styles.row}>
             <EditDeleteBtn type={"edit"}></EditDeleteBtn>
-            <EditDeleteBtn type={"delete"}></EditDeleteBtn>
+            <EditDeleteBtn type={"delete"} onPress={handleDelete}></EditDeleteBtn>
           </View>
         </>
       )}
@@ -125,7 +148,7 @@ const getStyles = (theme) =>
     row: {
       flexDirection: "row",
       alignItems: "center",
-      gap:12
+      gap: 12,
     },
     nameAndIcon: {
       flexDirection: "row",
