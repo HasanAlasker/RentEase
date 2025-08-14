@@ -6,6 +6,7 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet } from "react-native";
 
 import { ThemeProvider, useTheme } from "./config/ThemeContext";
+import { PostProvider } from "./config/PostsContext";
 
 import Home from "./pages/users/Home";
 import Post from "./pages/users/Post";
@@ -46,7 +47,9 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <ThemeProvider>
-        <AppContent />
+        <PostProvider>
+          <AppContent />
+        </PostProvider>
       </ThemeProvider>
     </SafeAreaProvider>
   );

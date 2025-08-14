@@ -24,7 +24,7 @@ function TableRow({ even, odd, icon, size, label, value }) {
         ></MaterialCommunityIcons>
         <AppText style={styles.text}>{label}</AppText>
       </View>
-      <AppText style={styles.text}>{value}</AppText>
+      <AppText style={styles.text}>{(value != null && value !== '') ? value : 'لا يوجد'}</AppText>
     </View>
   );
 }

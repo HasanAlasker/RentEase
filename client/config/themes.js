@@ -8,7 +8,7 @@ export const lightTheme = {
     'red': '#FF0000',
     'always_white':'white',
     'gold':'#FFBF00',
-    'green':'#11FF00',
+    'green':'#0ece00ff',
     'sec_text':'#989898',
 
 };
