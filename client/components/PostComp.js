@@ -12,6 +12,7 @@ import AppText from "../config/AppText";
 import TableRow from "./TableRow";
 import EditDeleteBtn from "./EditDeleteBtn";
 import { usePosts } from "../config/PostsContext";
+import EditPostModal from "./EditPostModal";
 
 function PostComp({
   id, // Add id prop
@@ -26,6 +27,7 @@ function PostComp({
   const { theme } = useTheme();
 
   const [fullPost, setFullPost] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
 
   const { removePost } = usePosts();
 
@@ -65,6 +67,21 @@ function PostComp({
         onPress: () => removePost(id), // Use id instead of postId
       },
     ]);
+  };
+
+  const handleEdit = () => {
+    setShowEditModal(true);
+  };
+
+  // Prepare post data for editing
+  const postData = {
+    id,
+    userName,
+    contractStart,
+    anualRent,
+    numberOfPayments,
+    numberOfCheques: numberOfCheques || "",
+    dateOfCheques: dateOfCheques || "",
   };
 
   return (
@@ -145,11 +162,17 @@ function PostComp({
             ></TableRow>
           </View>
           <View style={styles.row}>
-            <EditDeleteBtn type={"edit"}></EditDeleteBtn>
+            <EditDeleteBtn type={"edit"} onPress={handleEdit}></EditDeleteBtn>
             <EditDeleteBtn type={"delete"} onPress={handleDelete}></EditDeleteBtn>
           </View>
         </>
       )}
+
+      <EditPostModal
+        visible={showEditModal}
+        onClose={() => setShowEditModal(false)}
+        postData={postData}
+      />
     </View>
   );
 }

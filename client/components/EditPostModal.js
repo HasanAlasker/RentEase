@@ -219,7 +219,7 @@ function EditPostModal({ visible, onClose, postData }) {
 
                 <FormikInput
                   name="dateOfCheques"
-                  placeholder="تواريخ الشيكات (DD/MM/YYYY, DD/MM/YYYY...)"
+                  placeholder="التواريخ (D/M/Y, D/M/Y...)"
                   values={values}
                   errors={errors}
                   handleChange={handleChange}
@@ -236,14 +236,15 @@ function EditPostModal({ visible, onClose, postData }) {
                     }}
                     disabled={isSubmitting}
                     loading={isSubmitting}
+                    style={styles.saveBtn}
                   />
-                  <TouchableOpacity
+                  <FormBtn
                     style={styles.cancelBtn}
                     onPress={onClose}
                     disabled={isSubmitting}
+                    title={'إلغاء'}
                   >
-                    <AppText style={styles.cancelText}>إلغاء</AppText>
-                  </TouchableOpacity>
+                  </FormBtn>
                 </View>
               </View>
             )}
@@ -279,9 +280,9 @@ const getStyles = (theme) =>
       justifyContent: "space-between",
       alignItems: "center",
       marginBottom: 20,
-      borderBottomWidth: 1,
-      borderBottomColor: theme.border,
-      paddingBottom: 10,
+      borderBottomWidth: 1.5,
+      borderBottomColor: theme.main_text,
+      paddingBottom: 15,
     },
     title: {
       fontSize: 20,
@@ -289,22 +290,21 @@ const getStyles = (theme) =>
       color: theme.main_text,
     },
     formContainer: {
-      gap: 15,
+      gap: 0,
     },
     buttonContainer: {
       marginTop: 20,
       gap: 10,
     },
     cancelBtn: {
-      backgroundColor: theme.secondary,
-      padding: 15,
-      borderRadius: 10,
-      alignItems: "center",
+      backgroundColor: theme.red,
+      borderColor:theme.red,
+      marginTop:0
     },
-    cancelText: {
-      color: theme.main_text,
-      fontSize: 16,
-      fontWeight: "bold",
+    saveBtn: {
+      backgroundColor: theme.green,
+      borderColor:theme.green,
+      
     },
   });
 
