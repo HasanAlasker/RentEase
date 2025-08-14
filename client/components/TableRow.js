@@ -64,6 +64,7 @@ const getStyles = (theme) =>
     valueText: {
       paddingHorizontal: 10,
        paddingVertical: 5,
+       lineHeight:25
     },
   });
 

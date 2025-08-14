@@ -33,11 +33,12 @@ const getStyles = (theme) =>
     text: {
       color: theme.always_white,
       fontWeight: "bold",
-      fontSize: 20,
+      fontSize: 18,
       flex:1,
       padding:0,
       margin:0,
-      textAlign:'center'
+      textAlign:'center',
+      textAlignVertical:'center'
     },
   });
 

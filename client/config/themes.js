@@ -14,9 +14,9 @@ export const lightTheme = {
 };
 
 export const darkTheme = {
-    'blue':'#3988ffff',
+    'blue':'#007AFF',
     'background': '#212121',
-    'post': '#3c3c3cff',
+    'post': '#2a2a2aff',
     'main_text': '#FFFFFF',
     'even': '#696969',
     'odd': '#3E5E8E',
@@ -24,5 +24,5 @@ export const darkTheme = {
     'always_white':'white',
     'gold':'#FFBF00',
     'green':'#0DBF00',
-    'sec_text':'#989898',
+    'sec_text':'#b5b5b5ff',
 }

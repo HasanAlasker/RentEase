@@ -1,10 +1,5 @@
 import React, { useState } from "react";
-import {
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  Alert
-} from "react-native";
+import { View, StyleSheet, TouchableOpacity, Alert } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useTheme } from "../config/ThemeContext";
 import useThemedStyles from "../hooks/useThemedStyles";
@@ -34,25 +29,27 @@ function PostComp({
   // Function to calculate payment dates
   const calculatePaymentDates = () => {
     if (!contractStart || !numberOfPayments) return [];
-    
+
     // Parse the contract start date (assuming DD/MM/YYYY format)
-    const [day, month, year] = contractStart.split('/').map(Number);
+    const [day, month, year] = contractStart.split("/").map(Number);
     const startDate = new Date(year, month - 1, day); // month - 1 because JS months are 0-indexed
-    
+
     // Calculate months between payments (12 months / number of payments)
     const monthsBetweenPayments = 12 / numberOfPayments;
-    
+
     const paymentDates = [];
-    
+
     for (let i = 0; i < numberOfPayments; i++) {
       const paymentDate = new Date(startDate);
-      paymentDate.setMonth(startDate.getMonth() + (i * monthsBetweenPayments));
-      
+      paymentDate.setMonth(startDate.getMonth() + i * monthsBetweenPayments);
+
       // Format as DD/MM/YYYY
-      const formattedDate = `${paymentDate.getDate().toString()}/${(paymentDate.getMonth() + 1).toString()}`;
+      const formattedDate = `${paymentDate.getDate().toString()}/${(
+        paymentDate.getMonth() + 1
+      ).toString()}`;
       paymentDates.push(formattedDate);
     }
-    
+
     return paymentDates;
   };
 
@@ -96,7 +93,9 @@ function PostComp({
             size={30}
             color={theme.blue}
           ></MaterialCommunityIcons>
-          <AppText style={styles.text}>{userName}</AppText>
+          <AppText style={styles.text} numberOfLines={1}>
+            {userName}
+          </AppText>
         </View>
         <MaterialCommunityIcons
           name={
@@ -163,7 +162,10 @@ function PostComp({
           </View>
           <View style={styles.row}>
             <EditDeleteBtn type={"edit"} onPress={handleEdit}></EditDeleteBtn>
-            <EditDeleteBtn type={"delete"} onPress={handleDelete}></EditDeleteBtn>
+            <EditDeleteBtn
+              type={"delete"}
+              onPress={handleDelete}
+            ></EditDeleteBtn>
           </View>
         </>
       )}
@@ -187,7 +189,17 @@ const getStyles = (theme) =>
       borderRadius: 20,
       borderWidth: 2,
       borderColor: theme.blue,
-      marginVertical: 15,
+      marginVertical: 10,
+
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 4,
+      },
+      shadowOpacity: 0.3,
+      shadowRadius: 4.65,
+
+      elevation: 8,
     },
     top: {
       flexDirection: "row",
@@ -203,6 +215,7 @@ const getStyles = (theme) =>
       flexDirection: "row",
       alignItems: "center",
       gap: 10,
+      maxWidth: "72%",
     },
     text: {
       fontSize: 22,

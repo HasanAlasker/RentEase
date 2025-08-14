@@ -135,6 +135,7 @@ function EditPostModal({ visible, onClose, postData }) {
           keyboardType={keyboardType}
           multiline={multiline}
           penOn={true}
+          style={styles.input}
         />
         {shouldShowError && <ErrorMessage error={errors[name]} />}
       </>
@@ -179,7 +180,7 @@ function EditPostModal({ visible, onClose, postData }) {
               <View style={styles.formContainer}>
                 <FormikInput
                   name="contractStart"
-                  placeholder="بداية العقد (DD/MM/YYYY)"
+                  placeholder="بداية العقد"
                   values={values}
                   errors={errors}
                   handleChange={handleChange}
@@ -189,7 +190,7 @@ function EditPostModal({ visible, onClose, postData }) {
 
                 <FormikInput
                   name="anualRent"
-                  placeholder="قيمة الأجار السنوي"
+                  placeholder="قيمة الأجار"
                   values={values}
                   errors={errors}
                   handleChange={handleChange}
@@ -225,6 +226,7 @@ function EditPostModal({ visible, onClose, postData }) {
                   handleChange={handleChange}
                   handleBlur={handleBlur}
                   multiline={true}
+                  keyboardType='numeric'
                 />
 
                 <View style={styles.buttonContainer}>
@@ -259,14 +261,15 @@ const getStyles = (theme) =>
   StyleSheet.create({
     modalContainer: {
       flex: 1,
-      backgroundColor: "rgba(0, 0, 0, 0.5)",
+      backgroundColor: "rgba(0, 0, 0, 0.6)",
       justifyContent: "center",
       alignItems: "center",
+      
     },
     modalContent: {
       backgroundColor: theme.background,
       width: "90%",
-      maxHeight: "80%",
+      
       borderRadius: 20,
       padding: 20,
       elevation: 5,
@@ -299,13 +302,18 @@ const getStyles = (theme) =>
     cancelBtn: {
       backgroundColor: theme.red,
       borderColor:theme.red,
-      marginTop:0
+      marginTop:0,
+      width:'100%'
     },
     saveBtn: {
       backgroundColor: theme.green,
       borderColor:theme.green,
+      width:'100%'
       
     },
+    input:{
+        width:'100%'
+    }
   });
 
 export default EditPostModal;

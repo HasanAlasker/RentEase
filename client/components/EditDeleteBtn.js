@@ -39,10 +39,10 @@ const getStyles = (theme) =>
     container: {
       flexDirection: "row",
       alignItems: "center",
-      paddingHorizontal:10,
-      paddingVertical:2,
+      paddingHorizontal:12,
+      paddingVertical:6,
       borderRadius:10,
-      gap:5
+      gap:5,
     },
     text: {
       fontSize: 20,

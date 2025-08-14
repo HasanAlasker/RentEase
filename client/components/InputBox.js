@@ -3,12 +3,12 @@ import { Feather } from "@expo/vector-icons";
 import useThemedStyles from "../hooks/useThemedStyles";
 import { useTheme } from "../config/ThemeContext";
 
-function InputBox({ placeholder, penOn, icon, value, ...rest }) {
+function InputBox({ placeholder, penOn, icon, value, style , ...rest}) {
   const styles = useThemedStyles(getStyles);
   const { theme } = useTheme();
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       {penOn && <Feather name="edit-3" size={24} color={theme.blue} />}
       {icon && <Feather name={icon} size={24} color={theme.blue} />}
       <TextInput
