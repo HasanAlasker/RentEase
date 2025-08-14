@@ -23,22 +23,24 @@ const schema = Yup.object().shape({
     .required("Name is required"),
 
   contractStart: Yup.string()
-    .matches(
-      /^(0?[1-9]|1[0-2])\/(0?[1-9]|[12]\d|3[01])\/\d{4}$/,
-      "Date must be in DD/MM/YYYY format"
-    )
-    .test("is-valid-date", "Invalid date", (value) => {
-      if (!value) return false;
-      const [day, month, year] = value.split("/").map(Number);
-      const date = new Date(year, month - 1, day);
-      // Check if JS rolled over to next month due to invalid date
-      return (
-        date.getFullYear() === year &&
-        date.getMonth() === month - 1 &&
-        date.getDate() === day
-      );
-    })
-    .required("Contract start date is required"),
+  .trim()
+  .matches(
+    /^(0?[1-9]|[12]\d|3[01])\/(0?[1-9]|1[0-2])\/\d{4}$/, // DD/MM/YYYY
+    "Date must be in DD/MM/YYYY format"
+  )
+  .test("is-valid-date", "Invalid date", (value) => {
+    if (!value) return false;
+    const [day, month, year] = value.split("/").map(Number);
+    const date = new Date(year, month - 1, day);
+    // ensure no rollover (e.g., 31/04 -> May 1)
+    return (
+      date.getFullYear() === year &&
+      date.getMonth() === month - 1 &&
+      date.getDate() === day
+    );
+  })
+  .required("Contract start date is required")
+,
 
   rent: Yup.number()
     .typeError("Rent must be a number")
@@ -104,7 +106,7 @@ function Post(props) {
       addPost(newPost);
 
       // Show success message
-      Alert.alert("نجح", "تم إضافة المستأجر بنجاح", [
+      Alert.alert("", "تم إضافة المستأجر بنجاح", [
         {
           text: "موافق",
           onPress: () => {

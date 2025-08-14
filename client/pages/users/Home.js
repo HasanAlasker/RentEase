@@ -6,7 +6,20 @@ import PostComp from "../../components/PostComp";
 import { usePosts } from "../../config/PostsContext";
 
 function Home(props) {
-  const { posts } = usePosts();
+  const { posts, isLoading } = usePosts();
+
+  if (isLoading) {
+    return (
+      <SafeScreen>
+        <FullScreen>
+          <View style={styles.loadingContainer}>
+            <Text>جاري التحميل...</Text>
+          </View>
+        </FullScreen>
+        <Navbar />
+      </SafeScreen>
+    );
+  }
 
   const renderPost = ({ item }) => (
     <PostComp
@@ -54,14 +67,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   emptyText: {
-    fontSize: 18,
+    fontSize: 22,
     fontWeight: "bold",
     color: "#666",
     marginBottom: 8,
     textAlign: "center",
   },
   emptySubText: {
-    fontSize: 14,
+    fontSize: 18,
     color: "#999",
     textAlign: "center",
     lineHeight: 20,

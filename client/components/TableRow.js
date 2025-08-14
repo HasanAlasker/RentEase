@@ -1,3 +1,4 @@
+
 import React from "react";
 import { View, StyleSheet } from "react-native";
 import useThemedStyles from "../hooks/useThemedStyles";
@@ -14,6 +15,17 @@ function TableRow({ even, odd, icon, size, label, value }) {
     else return theme.odd;
   };
 
+  const formatValue = () => {
+    if (value == null || value === '') return 'لا يوجد';
+    
+    // Check if value is an array
+    if (Array.isArray(value)) {
+      return value.length > 0 ? value.join(', ') : 'لا يوجد';
+    }
+    
+    return value;
+  };
+
   return (
     <View style={[styles.container, { backgroundColor: evenOdd() }]}>
       <View style={[styles.iconAndLabel]}>
@@ -24,7 +36,7 @@ function TableRow({ even, odd, icon, size, label, value }) {
         ></MaterialCommunityIcons>
         <AppText style={styles.text}>{label}</AppText>
       </View>
-      <AppText style={styles.text}>{(value != null && value !== '') ? value : 'لا يوجد'}</AppText>
+      <AppText style={[styles.text, styles.valueText]}>{formatValue()}</AppText>
     </View>
   );
 }
@@ -41,14 +53,17 @@ const getStyles = (theme) =>
       flexDirection: "row",
       alignItems: "center",
       gap: 5,
-
-      paddingHorizontal: 10,
+      paddingLeft: 10,
       paddingVertical: 5,
     },
     text: {
       color: theme.main_text,
       fontSize: 18,
       fontWeight: "bold",
+    },
+    valueText: {
+      paddingHorizontal: 10,
+       paddingVertical: 5,
     },
   });
 

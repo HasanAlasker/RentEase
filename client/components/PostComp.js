@@ -3,7 +3,6 @@ import {
   View,
   StyleSheet,
   TouchableOpacity,
-  TouchableWithoutFeedback,
   Alert
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -30,8 +29,35 @@ function PostComp({
 
   const { removePost } = usePosts();
 
+  // Function to calculate payment dates
+  const calculatePaymentDates = () => {
+    if (!contractStart || !numberOfPayments) return [];
+    
+    // Parse the contract start date (assuming DD/MM/YYYY format)
+    const [day, month, year] = contractStart.split('/').map(Number);
+    const startDate = new Date(year, month - 1, day); // month - 1 because JS months are 0-indexed
+    
+    // Calculate months between payments (12 months / number of payments)
+    const monthsBetweenPayments = 12 / numberOfPayments;
+    
+    const paymentDates = [];
+    
+    for (let i = 0; i < numberOfPayments; i++) {
+      const paymentDate = new Date(startDate);
+      paymentDate.setMonth(startDate.getMonth() + (i * monthsBetweenPayments));
+      
+      // Format as DD/MM/YYYY
+      const formattedDate = `${paymentDate.getDate().toString()}/${(paymentDate.getMonth() + 1).toString()}`;
+      paymentDates.push(formattedDate);
+    }
+    
+    return paymentDates;
+  };
+
+  const paymentDates = calculatePaymentDates();
+
   const handleDelete = () => {
-    Alert.alert("حذف المستأجر", "هل أنت متأكد من حذف هذا المستأجر؟", [
+    Alert.alert("", "هل أنت متأكد من حذف هذا المستأجر؟", [
       { text: "إلغاء", style: "cancel" },
       {
         text: "حذف",
@@ -93,7 +119,7 @@ function PostComp({
               icon={"clock-outline"}
               size={20}
               label={"موعد الدفعات:"}
-              value={""}
+              value={paymentDates}
               even={true}
             ></TableRow>
             <TableRow
