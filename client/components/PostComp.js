@@ -17,6 +17,8 @@ function PostComp({
   numberOfPayments,
   numberOfCheques,
   dateOfCheques,
+  payments,
+  notes,
 }) {
   const styles = useThemedStyles(getStyles);
   const { theme } = useTheme();
@@ -70,15 +72,17 @@ function PostComp({
     setShowEditModal(true);
   };
 
-  // Prepare post data for editing
+  // Prepare post data for editing - ensure values are properly handled
   const postData = {
     id,
     userName,
-    contractStart,
-    anualRent,
-    numberOfPayments,
+    contractStart: contractStart || "",
+    anualRent: anualRent || "",
+    numberOfPayments: numberOfPayments || "",
     numberOfCheques: numberOfCheques || "",
     dateOfCheques: dateOfCheques || "",
+    payments: payments || "",  
+    notes: notes || "",        
   };
 
   return (
@@ -157,6 +161,20 @@ function PostComp({
               size={20}
               label={"تواريخ الاستحقاق:"}
               value={dateOfCheques}
+              odd={true}
+            ></TableRow>
+            <TableRow
+              icon={"cash"}
+              size={22}
+              label={"الدفعات:"}
+              value={payments}
+              even={true}
+            ></TableRow>
+            <TableRow
+              icon={"note-outline"}
+              size={20}
+              label={"ملاحظات:"}
+              value={notes}
               odd={true}
             ></TableRow>
           </View>

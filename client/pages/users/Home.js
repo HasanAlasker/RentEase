@@ -30,6 +30,8 @@ function Home(props) {
       numberOfPayments={item.numberOfPayments}
       numberOfCheques={item.numberOfCheques}
       dateOfCheques={item.dateOfCheques}
+      payments={item.payments}
+      notes={item.notes}
     />
   );
 

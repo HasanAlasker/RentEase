@@ -5,6 +5,7 @@ import {
   Modal,
   Alert,
   TouchableOpacity,
+  ScrollView,
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useTheme } from "../config/ThemeContext";
@@ -14,7 +15,7 @@ import InputBox from "./InputBox";
 import FormBtn from "./FormBtn";
 import ErrorMessage from "./ErrorMessage";
 import { usePosts } from "../config/PostsContext";
-import { Formik } from "formik";
+import { Formik, yupToFormErrors } from "formik";
 import * as Yup from "yup";
 
 const editSchema = Yup.object().shape({
@@ -54,25 +55,31 @@ const editSchema = Yup.object().shape({
 
   dateOfCheques: Yup.string()
     .trim()
-    .test("valid-dates", "Invalid date format", function(value) {
-      if (!value || value === '') return true; // Allow empty
-      
+    .test("valid-dates", "Invalid date format", function (value) {
+      if (!value || value === "") return true; // Allow empty
+
       // Split by comma and validate each date
-      const dates = value.split(',').map(d => d.trim());
+      const dates = value.split(",").map((d) => d.trim());
       for (let date of dates) {
         if (!/^(0?[1-9]|[12]\d|3[01])\/(0?[1-9]|1[0-2])\/\d{4}$/.test(date)) {
           return false;
         }
         const [day, month, year] = date.split("/").map(Number);
         const dateObj = new Date(year, month - 1, day);
-        if (dateObj.getFullYear() !== year || 
-            dateObj.getMonth() !== month - 1 || 
-            dateObj.getDate() !== day) {
+        if (
+          dateObj.getFullYear() !== year ||
+          dateObj.getMonth() !== month - 1 ||
+          dateObj.getDate() !== day
+        ) {
           return false;
         }
       }
       return true;
     }),
+
+    payments: Yup.string(),
+
+    notes: Yup.string(),
 });
 
 function EditPostModal({ visible, onClose, postData }) {
@@ -83,7 +90,7 @@ function EditPostModal({ visible, onClose, postData }) {
 
   const handleSubmit = (values, { setSubmitting }) => {
     setHasBeenSubmitted(true);
-    
+
     try {
       // Update the post with new values
       const updatedPost = {
@@ -91,8 +98,12 @@ function EditPostModal({ visible, onClose, postData }) {
         contractStart: values.contractStart,
         anualRent: values.anualRent.toString(),
         numberOfPayments: values.numberOfPayments.toString(),
-        numberOfCheques: values.numberOfCheques ? values.numberOfCheques.toString() : "",
+        numberOfCheques: values.numberOfCheques
+          ? values.numberOfCheques.toString()
+          : "",
         dateOfCheques: values.dateOfCheques,
+        payments: values.payments,
+        notes: values.notes,
         updatedAt: new Date().toISOString(),
       };
 
@@ -156,14 +167,16 @@ function EditPostModal({ visible, onClose, postData }) {
               />
             </TouchableOpacity>
           </View>
-
-          <Formik
+          <ScrollView showsVerticalScrollIndicator={false}>
+            <Formik
             initialValues={{
               contractStart: postData?.contractStart || "",
               anualRent: postData?.anualRent || "",
               numberOfPayments: postData?.numberOfPayments || "",
               numberOfCheques: postData?.numberOfCheques || "",
               dateOfCheques: postData?.dateOfCheques || "",
+              payments: postData?.payments || "", 
+              notes: postData?.notes || "", 
             }}
             validationSchema={editSchema}
             onSubmit={handleSubmit}
@@ -178,56 +191,77 @@ function EditPostModal({ visible, onClose, postData }) {
               isSubmitting,
             }) => (
               <View style={styles.formContainer}>
-                <FormikInput
-                  name="contractStart"
-                  placeholder="بداية العقد"
-                  values={values}
-                  errors={errors}
-                  handleChange={handleChange}
-                  handleBlur={handleBlur}
-                  keyboardType="numeric"
-                />
+                
+                  <FormikInput
+                    name="contractStart"
+                    placeholder="بداية العقد"
+                    values={values}
+                    errors={errors}
+                    handleChange={handleChange}
+                    handleBlur={handleBlur}
+                    keyboardType="numeric"
+                  />
 
-                <FormikInput
-                  name="anualRent"
-                  placeholder="قيمة الأجار"
-                  values={values}
-                  errors={errors}
-                  handleChange={handleChange}
-                  handleBlur={handleBlur}
-                  keyboardType="numeric"
-                />
+                  <FormikInput
+                    name="anualRent"
+                    placeholder="قيمة الأجار"
+                    values={values}
+                    errors={errors}
+                    handleChange={handleChange}
+                    handleBlur={handleBlur}
+                    keyboardType="numeric"
+                  />
 
-                <FormikInput
-                  name="numberOfPayments"
-                  placeholder="عدد الدفعات"
-                  values={values}
-                  errors={errors}
-                  handleChange={handleChange}
-                  handleBlur={handleBlur}
-                  keyboardType="numeric"
-                />
+                  <FormikInput
+                    name="numberOfPayments"
+                    placeholder="عدد الدفعات"
+                    values={values}
+                    errors={errors}
+                    handleChange={handleChange}
+                    handleBlur={handleBlur}
+                    keyboardType="numeric"
+                  />
 
-                <FormikInput
-                  name="numberOfCheques"
-                  placeholder="عدد الشيكات (اختياري)"
-                  values={values}
-                  errors={errors}
-                  handleChange={handleChange}
-                  handleBlur={handleBlur}
-                  keyboardType="numeric"
-                />
+                  <FormikInput
+                    name="numberOfCheques"
+                    placeholder="عدد الشيكات (اختياري)"
+                    values={values}
+                    errors={errors}
+                    handleChange={handleChange}
+                    handleBlur={handleBlur}
+                    keyboardType="numeric"
+                  />
 
-                <FormikInput
-                  name="dateOfCheques"
-                  placeholder="التواريخ (D/M/Y, D/M/Y...)"
-                  values={values}
-                  errors={errors}
-                  handleChange={handleChange}
-                  handleBlur={handleBlur}
-                  multiline={true}
-                  keyboardType='numeric'
-                />
+                  <FormikInput
+                    name="dateOfCheques"
+                    placeholder="التواريخ (D/M/Y, D/M/Y...)"
+                    values={values}
+                    errors={errors}
+                    handleChange={handleChange}
+                    handleBlur={handleBlur}
+                    multiline={true}
+                    keyboardType="numeric"
+                  />
+
+                  <FormikInput
+                    name="payments"
+                    placeholder="الدفعات"
+                    values={values}
+                    errors={errors}
+                    handleChange={handleChange}
+                    handleBlur={handleBlur}
+                    multiline={true}
+                  />
+
+                  <FormikInput
+                    name="notes"
+                    placeholder="الملاحظات"
+                    values={values}
+                    errors={errors}
+                    handleChange={handleChange}
+                    handleBlur={handleBlur}
+                    multiline={true}
+                  />
 
                 <View style={styles.buttonContainer}>
                   <FormBtn
@@ -244,13 +278,14 @@ function EditPostModal({ visible, onClose, postData }) {
                     style={styles.cancelBtn}
                     onPress={onClose}
                     disabled={isSubmitting}
-                    title={'إلغاء'}
-                  >
-                  </FormBtn>
+                    title={"إلغاء"}
+                  ></FormBtn>
                 </View>
               </View>
             )}
           </Formik>
+          </ScrollView>
+          
         </View>
       </View>
     </Modal>
@@ -264,12 +299,11 @@ const getStyles = (theme) =>
       backgroundColor: "rgba(0, 0, 0, 0.6)",
       justifyContent: "center",
       alignItems: "center",
-      
     },
     modalContent: {
       backgroundColor: theme.background,
       width: "90%",
-      
+      maxHeight: "90%",
       borderRadius: 20,
       padding: 20,
       elevation: 5,
@@ -277,6 +311,7 @@ const getStyles = (theme) =>
       shadowOffset: { width: 0, height: 2 },
       shadowOpacity: 0.25,
       shadowRadius: 3.84,
+      
     },
     header: {
       flexDirection: "row",
@@ -296,24 +331,25 @@ const getStyles = (theme) =>
       gap: 0,
     },
     buttonContainer: {
-      marginTop: 20,
+      marginTop: 10,
       gap: 10,
+      
     },
     cancelBtn: {
       backgroundColor: theme.red,
-      borderColor:theme.red,
-      marginTop:0,
-      width:'100%'
+      borderColor: theme.red,
+      marginTop: 0,
+      width: "100%",
+      
     },
     saveBtn: {
       backgroundColor: theme.green,
-      borderColor:theme.green,
-      width:'100%'
-      
+      borderColor: theme.green,
+      width: "100%",
     },
-    input:{
-        width:'100%'
-    }
+    input: {
+      width: "100%",
+    },
   });
 
 export default EditPostModal;
