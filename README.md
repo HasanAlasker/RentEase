@@ -63,7 +63,17 @@ Forget flipping through **heavy books** or re-reading **long contracts** — wit
 
 ## 📸 Screenshots
 
-> Coming soon — home screen, add screen, and expanded renter details.
+<p align="center">
+  <img src="client/assets/screenShots/1.jpg" width="250" />
+  <img src="client/assets/screenShots/2.jpg" width="250" />
+  <img src="client/assets/screenShots/3.jpg" width="250" />
+  <img src="client/assets/screenShots/4.jpg" width="250" />
+  <img src="client/assets/screenShots/5.jpg" width="250" />
+  <img src="client/assets/screenShots/6.jpg" width="250" />
+  <img src="client/assets/screenShots/7.jpg" width="250" />
+  <img src="client/assets/screenShots/8.jpg" width="250" />
+  
+</p>
 
 ---
 
