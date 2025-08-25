@@ -1,11 +1,13 @@
 # 🏢 RentEase
 
+
+<p align="center">
+  <img src="client/assets/ScreenShots/rentease-feature-graphic.png" width=100% />
+</p>
 > **Manage your building. Ditch the paperwork.**  
 > Your pocket-sized assistant for tracking renters, payments, and contracts — all offline.
 >
-> <p align="center">
-  <img src="client/assets/ScreenShots/rentease-feature-graphic.png" width=100% />
-</p>
+> 
 
 <p align="center">
   <img src="https://img.shields.io/badge/Built%20With-React%20Native-61dafb?style=for-the-badge&logo=react&logoColor=white" />
