@@ -10,6 +10,7 @@ import { usePosts } from "../../config/PostsContext";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import FormBtn from "../../components/FormBtn";
+import DatePicker from "../../components/DatePicker";
 
 const schema = Yup.object().shape({
   name: Yup.string()
@@ -169,7 +170,7 @@ function Post(props) {
                 handleBlur={handleBlur}
                 hasBeenSubmitted={hasBeenSubmitted}
                 penOn={true}
-                keyboardType="numeric"
+                keyboardType=""
               />
 
               <FormikInput
