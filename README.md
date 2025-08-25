@@ -70,9 +70,6 @@ Forget flipping through **heavy books** or re-reading **long contracts** — wit
   <img src="client/assets/ScreenShots/2.jpg" width="250" />
   <img src="client/assets/ScreenShots/3.jpg" width="250" />
   <img src="client/assets/ScreenShots/4.jpg" width="250" />
-</p>
-
-<p align="center">
  <img src="client/assets/ScreenShots/5.jpg" width="250" />
   <img src="client/assets/ScreenShots/6.jpg" width="250" />
   <img src="client/assets/ScreenShots/7.jpg" width="250" />
