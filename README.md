@@ -4,10 +4,9 @@
 <p align="center">
   <img src="client/assets/ScreenShots/rentease-feature-graphic.png" width=100% />
 </p>
+
 > **Manage your building. Ditch the paperwork.**  
 > Your pocket-sized assistant for tracking renters, payments, and contracts — all offline.
->
-> 
 
 <p align="center">
   <img src="https://img.shields.io/badge/Built%20With-React%20Native-61dafb?style=for-the-badge&logo=react&logoColor=white" />
@@ -72,14 +71,14 @@ Forget flipping through **heavy books** or re-reading **long contracts** — wit
 ## 📸 Screenshots
 
 <p align="center">
-  <img src="client/assets/ScreenShots/1.jpg" width="250" />
-  <img src="client/assets/ScreenShots/2.jpg" width="250" />
-  <img src="client/assets/ScreenShots/3.jpg" width="250" />
-  <img src="client/assets/ScreenShots/4.jpg" width="250" />
- <img src="client/assets/ScreenShots/5.jpg" width="250" />
-  <img src="client/assets/ScreenShots/6.jpg" width="250" />
-  <img src="client/assets/ScreenShots/7.jpg" width="250" />
-  <img src="client/assets/ScreenShots/8.jpg" width="250" />
+  <img src="client/assets/ScreenShots/1.jpg" width="200" />
+  <img src="client/assets/ScreenShots/2.jpg" width="200" />
+  <img src="client/assets/ScreenShots/3.jpg" width="200" />
+  <img src="client/assets/ScreenShots/4.jpg" width="200" />
+ <img src="client/assets/ScreenShots/5.jpg" width="200" />
+  <img src="client/assets/ScreenShots/6.jpg" width="200" />
+  <img src="client/assets/ScreenShots/7.jpg" width="200" />
+  <img src="client/assets/ScreenShots/8.jpg" width="200" />
 </p>
 
 ---
