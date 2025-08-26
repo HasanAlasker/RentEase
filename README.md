@@ -68,7 +68,6 @@ Forget flipping through **heavy books** or re-reading **long contracts** — wit
 
 ## 📸 Screenshots
 
-## 📸 Screenshots
 
 <p align="center">
   <img src="client/assets/ScreenShots/1.jpg" width="200" />
