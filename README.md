@@ -12,6 +12,9 @@
   <img src="https://img.shields.io/badge/Built%20With-React%20Native-61dafb?style=for-the-badge&logo=react&logoColor=white" />
   <img src="https://img.shields.io/badge/Powered%20By-Expo-000020?style=for-the-badge&logo=expo&logoColor=white" />
   <img src="https://img.shields.io/badge/License-Private-red?style=for-the-badge" />
+  <a href="https://play.google.com/store/search?q=rentease&c=apps&hl=en">
+  <img src="https://img.shields.io/badge/Download_Here-414141?style=for-the-badge&logo=google-play&logoColor=white"/>
+</a>
 </p>
 
 ---
