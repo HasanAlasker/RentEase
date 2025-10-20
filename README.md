@@ -94,7 +94,7 @@ Forget flipping through **heavy books** or re-reading **long contracts** — wit
 
 **Hasan Alasker**  
 Front-End Engineer | UI/UX Designer | Mobile Developer  
-🌐 [Portfolio Website](https://hasan-alasker.netlify.app)  
+🌐 [Portfolio Website](https://alasker.dev)  
 📧 [hasanalasker.contact@gmail.com](mailto:hasanalasker.contact@gmail.com)
 
 ---
